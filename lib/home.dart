@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iotlamp/colour_widget.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -21,25 +22,10 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text("widget.title"),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
+      body: Container(
+        alignment: Alignment.center,
+        child: ColourWidget(),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
