@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:iotlamp/colour_widget.dart';
 
@@ -24,7 +27,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Container(
         alignment: Alignment.center,
-        child: ColourWidget(),
+        child: Transform.rotate(angle: pi / 2, child: ColourWidget()),
       ),
     );
   }
