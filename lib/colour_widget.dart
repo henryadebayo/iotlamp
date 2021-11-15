@@ -78,19 +78,25 @@ class ClockPainter extends CustomPainter {
     //CENTER FILL
     canvas.drawCircle(center, 16, centerFill);
 
-    var hourX = centerX + 80 * cos(90 * pi / 180);
-    var hourY = centerY + 80 * cos(90 * pi / 180);
+    var hourX =
+        centerX + 80 * cos(dateTime.hour * 30 + dateTime.minute * pi / 180);
+    var hourY =
+        centerY + 80 * sin(dateTime.hour * 30 + dateTime.minute * pi / 180);
 
     //hour
     canvas.drawLine(center, Offset(hourX, hourY), hourhandbrush);
 
-    var minX = centerX + 80 * cos(90 * pi / 180);
-    var minY = centerY + 80 * cos(90 * pi / 180);
+    var minX = centerX + 80 * cos(dateTime.minute * 6 * pi / 180);
+    var minY = centerY + 80 * sin(dateTime.minute * 6 * pi / 180);
     //min
     canvas.drawLine(center, Offset(minX, minY), minutehandbrush);
 
     //sec
-    canvas.drawLine(center, Offset(100, 100), secondhandbrush);
+
+    var secX = centerX + 80 * cos(dateTime.second * 6 * pi / 180);
+    var secY = centerY + 80 * sin(dateTime.second * 6 * pi / 180);
+
+    canvas.drawLine(center, Offset(secX, secY), secondhandbrush);
   }
 
   @override
