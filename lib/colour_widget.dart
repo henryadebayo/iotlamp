@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -10,6 +11,14 @@ class ColourWidget extends StatefulWidget {
 }
 
 class _ColourWidgetState extends State<ColourWidget> {
+  @override
+  void initState() {
+    Timer.periodic(Duration(seconds: 1), (timer) {
+      setState(() {});
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -75,9 +84,6 @@ class ClockPainter extends CustomPainter {
     //OUTLINE
     canvas.drawCircle(center, radius - 40, outLine);
 
-    //CENTER FILL
-    canvas.drawCircle(center, 16, centerFill);
-
     var hourX =
         centerX + 80 * cos(dateTime.hour * 30 + dateTime.minute * pi / 180);
     var hourY =
@@ -97,6 +103,15 @@ class ClockPainter extends CustomPainter {
     var secY = centerY + 80 * sin(dateTime.second * 6 * pi / 180);
 
     canvas.drawLine(center, Offset(secX, secY), secondhandbrush);
+
+    //CENTER FILL
+    canvas.drawCircle(center, 16, centerFill);
+    var outerCircleRadius = radius;
+    var innerCircleRadius = radius - 14;
+    for (double i = 0; i < 360; i++) {
+      var x1 = centerX = outerCircleRadius * cos(i * pi / 180);
+      var y1 = centerX = outerCircleRadius * sin(i * pi / 180);
+    }
   }
 
   @override
