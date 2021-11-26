@@ -22,12 +22,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xff2d2f41),
-      appBar: AppBar(
-        title: Text("widget.title"),
-      ),
       body: Container(
         alignment: Alignment.center,
-        child: Transform.rotate(angle: pi / 2, child: ColourWidget()),
+        child: Transform.rotate(angle: -pi / 2, child: ColourWidget()),
       ),
     );
   }

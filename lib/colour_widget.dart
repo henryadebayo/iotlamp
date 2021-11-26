@@ -48,12 +48,12 @@ class ClockPainter extends CustomPainter {
 
     //OUTLINE
     var outLine = Paint()
-      ..color = Colors.grey
+      ..color = Colors.white
       //  style = PaintingStyle.stroke
       ..strokeWidth = 16.0;
 
     //centerFill
-    var centerFill = Paint()..color = Colors.grey;
+    var centerFill = Paint()..color = Colors.white;
 
     //second handbrush
     var secondhandbrush = Paint()
@@ -66,7 +66,7 @@ class ClockPainter extends CustomPainter {
 
     //minute handbrush
     var minutehandbrush = Paint()
-      ..shader = RadialGradient(colors: [Colors.lightBlue, Colors.pink])
+      ..shader = RadialGradient(colors: [Colors.green, Colors.pink])
           .createShader(Rect.fromCircle(center: center, radius: radius))
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
@@ -74,17 +74,17 @@ class ClockPainter extends CustomPainter {
 
     //hour handbrush
     var hourhandbrush = Paint()
-      ..shader = RadialGradient(colors: [Colors.lightBlue, Colors.pink])
+      ..shader = RadialGradient(colors: [Color(0xFFEA74AB), Color(0xFFC27950)])
           .createShader(Rect.fromCircle(center: center, radius: radius))
       ..color = Colors.grey
       ..style = PaintingStyle.stroke
       ..strokeWidth = 16.0;
 
     //INNER FILL
-    canvas.drawCircle(center, radius - 40, fillBrush);
 
     //OUTLINE
-    canvas.drawCircle(center, radius - 40, outLine);
+    canvas.drawCircle(center, radius - 30, outLine);
+    canvas.drawCircle(center, radius - 40, fillBrush);
 
     var hourX =
         centerX + 80 * cos(dateTime.hour * 30 + dateTime.minute * pi / 180);
@@ -107,15 +107,16 @@ class ClockPainter extends CustomPainter {
     canvas.drawLine(center, Offset(secX, secY), secondhandbrush);
 
     //CENTER FILL
+
     canvas.drawCircle(center, 16, centerFill);
     var outerCircleRadius = radius;
-    var innerCircleRadius = radius - 14;
-    for (double i = 0; i < 360; i++) {
-      var x1 = centerX = outerCircleRadius * cos(i * pi / 180);
-      var y1 = centerX = outerCircleRadius * sin(i * pi / 180);
+    var innerCircleRadius = radius - 16;
+    for (double i = 0; i < 360; i += 12) {
+      var x1 = centerX + outerCircleRadius * cos(i * pi / 180);
+      var y1 = centerX + outerCircleRadius * sin(i * pi / 180);
 
-      var x2 = centerX = innerCircleRadius * cos(i * pi / 180);
-      var y2 = centerX = innerCircleRadius * sin(i * pi / 180);
+      var x2 = centerX + innerCircleRadius * cos(i * pi / 180);
+      var y2 = centerX + innerCircleRadius * sin(i * pi / 180);
 
       canvas.drawLine(Offset(x1, y1), Offset(x2, y2), dashBrush);
     }
